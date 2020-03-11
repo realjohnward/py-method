@@ -38,7 +38,7 @@ class MethodAPIClient(Client):
 
     def __getattr__(self, attr):
         if attr in dir(self):
-            result = getattr(self, attr)
+            return getattr(self, attr)
         elif attr not in self.operations:
             raise InvalidMethodAPIOperation(f"Method API Operation '{attr}' does not exist.")
         else:
