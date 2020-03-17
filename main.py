@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # example
     credentials = load_json(open("credentials.json"))
     client = MethodAPIClient(strCompanyAccount=credentials['strCompanyAccount'],
-                            strLogin=credentials['strCompanyAccount'],
-                            strPassword=credentials['strCompanyAccount'],
+                            strLogin=credentials['strLogin'],
+                            strPassword=credentials['strPassword'],
                             strSessionID=credentials['strSessionID'])
     result = client.MethodAPIFieldListV2(client.strCompanyAccount, client.strLogin, client.strPassword, client.strSessionID, "Contacts")
