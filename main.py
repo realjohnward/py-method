@@ -11,13 +11,13 @@ class InvalidMethodAPIOperation(AttributeError):
 
 
 class MethodAPIClientOperationProxy(object):
-    def __init__(self, proxy, operation):
+    def __init__(self, proxy, operation, *args, **kwargs):
         self.proxy = proxy
         self.operation = operation
-    
+
     def __call__(self, *args, **kwargs):
         return getattr(self.proxy, self.operation)(*args, **kwargs)
-
+        # return getattr(self.proxy, self.operation)(*args, **kwargs)
 
 class MethodAPIClient(Client):
     def __init__(self, strCompanyAccount=None,
@@ -42,6 +42,8 @@ class MethodAPIClient(Client):
         elif attr not in self.operations:
             raise InvalidMethodAPIOperation(f"Method API Operation '{attr}' does not exist.")
         else:
+            # print("strCompAcct: ", self.strCompanyAccount)
+            # print("strLogin: ", self.strLogin)
             return MethodAPIClientOperationProxy(self.service, attr)
 
 
@@ -53,3 +55,4 @@ if __name__ == '__main__':
                             strPassword=credentials['strPassword'],
                             strSessionID=credentials['strSessionID'])
     result = client.MethodAPIFieldListV2(client.strCompanyAccount, client.strLogin, client.strPassword, client.strSessionID, "Contacts")
+    print(result)
