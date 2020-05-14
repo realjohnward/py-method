@@ -4,9 +4,10 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="py_method", # Replace with your own username
-    version="0.0.1",
+    name="py_method", 
+    version="0.0.2",
     author="John Ward",
+    license="MIT",
     author_email="realjohntward@gmail.com",
     description="A pythonic interface to the Method CRM's API",
     long_description=long_description,
